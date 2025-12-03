@@ -1,6 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-
   "comment": "Palette de couleurs (direction artistique sombre, accents bleu/cyan/magenta). Utilisée pour cohérence visuelle.",
   "palette": {
     "accent_blue": "#7aa2f7",
@@ -10,162 +9,195 @@
     "accent_orange": "#e0af68",
     "accent_red": "#f7768e",
     "background": "#1a1b26",
-    "text": "#c0caf5"
+    "text": "#c0caf5",
+    "git_bg": "#7aa2f7",
+    "path_bg": "#1f2335"
   },
-
-  "comment_transient": "Prompts secondaires: 'transient_prompt' est l’invite minimaliste après exécution; 'secondary_prompt' s’affiche pour les lignes multi-commande.",
   "secondary_prompt": {
     "template": "\u2026 ",
-    "foreground": "#7aa2f7"
+    "foreground": "p:accent_blue"
   },
   "transient_prompt": {
     "template": "❯ ",
-    "foreground": "#7aa2f7"
+    "foreground": "p:accent_blue"
   },
-
-  "comment_blocks": "Les blocs définissent les zones de l’invite: 'prompt' à gauche, 'rprompt' à droite (visible surtout en zsh).",
   "blocks": [
     {
       "type": "prompt",
       "alignment": "left",
-      "comment_prompt": "Bloc principal à gauche: heure, chemin, git, runtimes, statut, etc.",
       "segments": [
         {
-          "comment_time": "Heure actuelle. time_format en 24h. Change en '15:04:05' pour inclure les secondes.",
+          "type": "os",
+          "style": "plain",
+          "foreground": "p:text",
           "properties": {
-            "time_format": "15:04"
-          },
-          "foreground": "#7aa2f7",
-          "type": "time",
-          "style": "plain"
+            "windows": "\ue62a",
+            "macos": "\uf179",
+            "linux": "\uf17c",
+            "template": "{{ .Icon }} "
+          }
         },
         {
-          "comment_path": "Chemin courant. Style powerline avec icônes dossier/maison. max_depth limite l’affichage pour rester lisible. enable_hyperlink rend le chemin cliquable (dans terminaux compatibles).",
+          "type": "root",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "root_icon": "\uf0e7",
+            "template": "<bold>ADMIN {{ .Icon }}</> "
+          }
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "p:accent_blue",
+          "properties": {
+            "time_format": "15:04"
+          }
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:text",
+          "background": "p:path_bg",
           "properties": {
             "enable_hyperlink": true,
             "folder_icon": "\uf115",
-            "hide_root_location": false,
             "home_icon": "\uf015",
             "max_depth": 3,
             "style": "agnoster"
-          },
-          "foreground": "#c0caf5",
-          "background": "#1f2335",
-          "type": "path",
-          "style": "powerline"
+          }
         },
         {
-          "comment_git": "Informations Git: branche, statut du working tree (ajouts/modifs/suppressions), stash, upstream. fetch_status peut être coûteux dans très gros repos; passe-le à false pour accélérer.",
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#1d202f",
+          "background": "p:git_bg",
           "properties": {
             "branch_icon": "\ue725 ",
             "display_stash_count": true,
             "display_upstream_icon": true,
             "fetch_status": true,
             "template": "{{ .UpstreamIcon }}{{ .Branch }}{{ if .Working.Added }} +{{ .Working.Added }}{{ end }}{{ if .Working.Modified }} ~{{ .Working.Modified }}{{ end }}{{ if .Working.Deleted }} -{{ .Working.Deleted }}{{ end }}{{ if .StashCount }} 📦{{ .StashCount }}{{ end }}"
-          },
-          "foreground": "#1d202f",
-          "background": "#7aa2f7",
-          "type": "git",
-          "style": "powerline"
+          }
         },
         {
-          "comment_node": "Version Node.js détectée selon le projet (package.json, .nvmrc, etc.). always_enabled=false => n’apparaît que s’il y a du contexte Node.",
+          "comment": "Ce segment sert juste à fermer proprement la flèche Git vers le fond transparent",
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:git_bg",
           "properties": {
-            "always_enabled": false,
-            "display_mode": "files",
-            "template": "\uf898 {{ .Full }}"
-          },
-          "foreground": "#9ece6a",
-          "type": "node",
-          "style": "plain"
+            "text": "\ue0b0"
+          }
         },
         {
-          "comment_python": "Environnement Python (venv/conda) s’il est actif dans le répertoire. max_depth contrôle la profondeur de recherche.",
+          "type": "node",
+          "style": "plain",
+          "foreground": "p:accent_green",
+          "properties": {
+            "display_mode": "files",
+            "fetch_package_manager": true,
+            "template": " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}\uf898 {{ .Full }}"
+          }
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:accent_orange",
           "properties": {
             "display_mode": "context",
             "max_depth": 4,
-            "template": "\ue606 {{ .Venv }}"
-          },
-          "foreground": "#e0af68",
-          "type": "python",
-          "style": "plain"
+            "template": " \ue606 {{ .Venv }}"
+          }
         },
         {
-          "comment_docker": "Contexte Docker actuel (docker context ls / current). Affiché uniquement quand pertinent.",
-          "properties": {
-            "display_mode": "context",
-            "template": "\uf308 {{ .Context }}"
-          },
-          "foreground": "#7dcfff",
           "type": "docker",
-          "style": "plain"
+          "style": "plain",
+          "foreground": "p:accent_cyan",
+          "properties": {
+            "display_mode": "files",
+            "template": " \uf308 {{ .Context }}"
+          }
         },
         {
-          "comment_k8s": "Contexte et namespace Kubernetes (kubectl config). Affiché si des variables/env/contextes sont disponibles.",
-          "properties": {
-            "display_mode": "env",
-            "template": "\u2388 {{ .Context }}:{{ .Namespace }}"
-          },
-          "foreground": "#7dcfff",
           "type": "kubernetes",
-          "style": "plain"
-        },
-        {
-          "comment_aws": "Profil et région AWS (AWS_PROFILE / AWS_REGION). Pratique pour éviter d’opérer sur le mauvais compte.",
+          "style": "plain",
+          "foreground": "p:accent_cyan",
           "properties": {
             "display_mode": "env",
-            "template": "\uf270 {{ .Profile }}@{{ .Region }}"
-          },
-          "foreground": "#f7768e",
-          "type": "aws",
-          "style": "plain"
+            "template": " \u2388 {{ .Context }}:{{ .Namespace }}"
+          }
         },
         {
-          "comment_status": "Code de sortie de la dernière commande. Utile pour repérer rapidement une erreur (✗ code). Toujours activé.",
+          "type": "aws",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "display_mode": "env",
+            "template": " \uf270 {{ .Profile }}@{{ .Region }}"
+          }
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:accent_red",
           "properties": {
             "always_enabled": true,
-            "template": "{{ if .Code }}✗ {{ .Code }}{{ end }}"
-          },
-          "foreground": "#f7768e",
-          "type": "status",
-          "style": "plain"
+            "template": "{{ if .Code }} ✗ {{ .Code }}{{ end }}"
+          }
+        },
+        {
+          "type": "newline"
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:accent_blue",
+          "properties": {
+            "text": "❯"
+          }
         }
       ]
     },
     {
       "type": "rprompt",
       "alignment": "right",
-      "comment_rprompt": "Bloc à droite (principalement visible en zsh). Contient batterie et temps d’exécution.",
       "segments": [
         {
-          "comment_battery": "Batterie du Mac: icône charge/décharge + pourcentage. Peut ne pas être disponible selon terminal/permissions; le template masque l’erreur.",
+          "type": "spotify",
+          "style": "plain",
+          "foreground": "#1db954",
+          "properties": {
+            "playing_icon": "\uf1bc ",
+            "paused_icon": "\uf04c ",
+            "stopped_icon": "\uf04d ",
+            "template": "{{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} "
+          }
+        },
+        {
+          "type": "battery",
+          "style": "plain",
+          "foreground": "p:text",
           "properties": {
             "charging_icon": "\uf0e7",
             "charging_threshold": 95,
             "discharging_icon": "\uf582",
-            "template": "{{ if .Error }}{{ else }}{{ .Icon }} {{ .Percentage }}%{{ end }}"
-          },
-          "foreground": "#c0caf5",
-          "type": "battery",
-          "style": "plain"
+            "template": "{{ if .Error }}{{ else }}{{ .Icon }} {{ .Percentage }}% {{ end }}"
+          }
         },
         {
-          "comment_executiontime": "Durée d’exécution de la dernière commande. threshold=0 => toujours affiché. Change en 200 pour n’afficher que > 200 ms.",
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:accent_magenta",
           "properties": {
             "template": "\u23f1 {{ .Milliseconds }}ms",
             "threshold": 0
-          },
-          "foreground": "#bb9af7",
-          "type": "executiontime",
-          "style": "plain"
+          }
         }
       ]
     }
   ],
-
-  "comment_version": "Version de format de thème Oh My Posh. 3 est le schéma actuel.",
   "version": 3,
-
-  "comment_final_space": "Ajoute un espace final pour éviter que l’invite colle au texte saisi.",
   "final_space": true
 }
