@@ -112,6 +112,33 @@
           }
         },
         {
+          "type": "go",
+          "style": "plain",
+          "foreground": "p:accent_cyan",
+          "properties": {
+            "display_mode": "files",
+            "template": " \ue627 {{ .Full }}"
+          }
+        },
+        {
+          "type": "rust",
+          "style": "plain",
+          "foreground": "p:accent_orange",
+          "properties": {
+            "display_mode": "files",
+            "template": " \ue7a8 {{ .Full }}"
+          }
+        },
+        {
+          "type": "java",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "display_mode": "files",
+            "template": " \ue256 {{ .Full }}"
+          }
+        },
+        {
           "type": "docker",
           "style": "plain",
           "foreground": "p:accent_cyan",
