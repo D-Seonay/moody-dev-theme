@@ -57,7 +57,7 @@
         {
           "type": "path",
           "style": "powerline",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "\ue0c6",
           "foreground": "p:text",
           "background": "p:path_bg",
           "properties": {
@@ -71,7 +71,7 @@
         {
           "type": "git",
           "style": "powerline",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "\ue0c6",
           "foreground": "#1d202f",
           "background": "p:git_bg",
           "properties": {
@@ -88,7 +88,7 @@
           "style": "plain",
           "foreground": "p:git_bg",
           "properties": {
-            "text": "\ue0b0"
+            "text": "\ue0c6"
           }
         },
         {
@@ -109,6 +109,33 @@
             "display_mode": "context",
             "max_depth": 4,
             "template": " \ue606 {{ .Venv }}"
+          }
+        },
+        {
+          "type": "go",
+          "style": "plain",
+          "foreground": "p:accent_cyan",
+          "properties": {
+            "display_mode": "files",
+            "template": " \ue627 {{ .Full }}"
+          }
+        },
+        {
+          "type": "rust",
+          "style": "plain",
+          "foreground": "p:accent_orange",
+          "properties": {
+            "display_mode": "files",
+            "template": " \ue7a8 {{ .Full }}"
+          }
+        },
+        {
+          "type": "java",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "display_mode": "files",
+            "template": " \ue256 {{ .Full }}"
           }
         },
         {
@@ -136,6 +163,52 @@
           "properties": {
             "display_mode": "env",
             "template": " \uf270 {{ .Profile }}@{{ .Region }}"
+          }
+        },
+        {
+          "type": "az",
+          "style": "plain",
+          "foreground": "p:accent_blue",
+          "properties": {
+            "display_mode": "env",
+            "template": " \ufd03 {{ .Name }}"
+          }
+        },
+        {
+          "type": "gcp",
+          "style": "plain",
+          "foreground": "p:accent_magenta",
+          "properties": {
+            "display_mode": "env",
+            "template": " \uf992 {{ .Project }}"
+          }
+        },
+        {
+          "type": "ipify",
+          "style": "plain",
+          "foreground": "p:accent_cyan",
+          "properties": {
+            "template": " \ufb4e {{ .IP }}"
+          }
+        },
+        {
+          "type": "sysinfo",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "cpu_icon": "\ufb19 ",
+            "template": " {{ .CPUIcon }}{{ .CPU }}% ",
+            "precision": 0
+          }
+        },
+        {
+          "type": "sysinfo",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "memory_icon": "\uf85a ",
+            "template": "{{ .MemoryIcon }}{{ .Memory }}% ",
+            "precision": 0
           }
         },
         {
