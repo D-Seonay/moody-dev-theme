@@ -166,6 +166,32 @@
           }
         },
         {
+          "type": "az",
+          "style": "plain",
+          "foreground": "p:accent_blue",
+          "properties": {
+            "display_mode": "env",
+            "template": " \ufd03 {{ .Name }}"
+          }
+        },
+        {
+          "type": "gcp",
+          "style": "plain",
+          "foreground": "p:accent_magenta",
+          "properties": {
+            "display_mode": "env",
+            "template": " \uf992 {{ .Project }}"
+          }
+        },
+        {
+          "type": "ipify",
+          "style": "plain",
+          "foreground": "p:accent_cyan",
+          "properties": {
+            "template": " \ufb4e {{ .IP }}"
+          }
+        },
+        {
           "type": "status",
           "style": "plain",
           "foreground": "p:accent_red",
