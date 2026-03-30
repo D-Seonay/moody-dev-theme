@@ -57,7 +57,7 @@
         {
           "type": "path",
           "style": "powerline",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "\ue0c6",
           "foreground": "p:text",
           "background": "p:path_bg",
           "properties": {
@@ -71,7 +71,7 @@
         {
           "type": "git",
           "style": "powerline",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": "\ue0c6",
           "foreground": "#1d202f",
           "background": "p:git_bg",
           "properties": {
@@ -88,7 +88,7 @@
           "style": "plain",
           "foreground": "p:git_bg",
           "properties": {
-            "text": "\ue0b0"
+            "text": "\ue0c6"
           }
         },
         {
