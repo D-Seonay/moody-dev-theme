@@ -192,6 +192,26 @@
           }
         },
         {
+          "type": "sysinfo",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "cpu_icon": "\ufb19 ",
+            "template": " {{ .CPUIcon }}{{ .CPU }}% ",
+            "precision": 0
+          }
+        },
+        {
+          "type": "sysinfo",
+          "style": "plain",
+          "foreground": "p:accent_red",
+          "properties": {
+            "memory_icon": "\uf85a ",
+            "template": "{{ .MemoryIcon }}{{ .Memory }}% ",
+            "precision": 0
+          }
+        },
+        {
           "type": "status",
           "style": "plain",
           "foreground": "p:accent_red",
